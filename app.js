@@ -71,7 +71,7 @@ function create() {
     Phaser.Actions.Call(
         this.walls.getChildren(),
         function(enemy) {
-            enemy.speed = Math.random() * 2 + 1;
+            enemy.speed = Math.random() * 1 + 1;
         },
         this
     );
@@ -79,7 +79,7 @@ function create() {
     Phaser.Actions.Call(
         this.bombs.getChildren(),
         function(enemy) {
-            enemy.speed = Math.random() * 4 + 1;
+            enemy.speed = Math.random() * 3 + 1;
         },
         this
     );
@@ -87,7 +87,7 @@ function create() {
     Phaser.Actions.Call(
         this.torchs.getChildren(),
         function(enemy) {
-            enemy.speed = Math.random() * 5 + 1;
+            enemy.speed = Math.random() * 4 + 1;
         },
         this
     );
@@ -122,7 +122,7 @@ function update() {
             }
             if (Phaser.Geom.Intersects.RectangleToRectangle(player.getBounds(), enemy.getBounds())) {
                 music.stop();
-                this.game.restart();
+                this.preload.restart();
             }
         });
     };
