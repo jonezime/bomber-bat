@@ -21,6 +21,7 @@ let score = 0;
 let scoreText;
 let life = 3;
 let lifeText;
+let winText;
 let gameOverText;
 let f5Text;
 
@@ -80,7 +81,7 @@ function create() {
     Phaser.Actions.Call(
         this.walls.getChildren(),
         function(enemy) {
-            enemy.speed = Math.random() * 5 + 1;
+            enemy.speed = Math.random() * 4 + 1;
         },
         this
     );
@@ -88,7 +89,7 @@ function create() {
     Phaser.Actions.Call(
         this.bombs.getChildren(),
         function(enemy) {
-            enemy.speed = Math.random() * 15 + 1;
+            enemy.speed = Math.random() * 7 + 1;
         },
         this
     );
@@ -124,14 +125,13 @@ function update() {
             if (Phaser.Geom.Intersects.RectangleToRectangle(player.getBounds(), enemy.getBounds())) {
                 if (life > 1) {
                     life--;
-                    console.log(life)
+                    console.log(life);
                     lifeText.setText("Life: " + life);
                     enemy.destroy();
                 } else {
                     lifeText.setText("Life: 0");
-                    gameOverText = this.add.text(620,  240, "Game Over", { fontSize: "100px", fill: "#FFF" });
-                    f5Text = this.add.text(670, 350, "Try again press F5", { fontSize: "50px", fill: "#FFF" });
-                    this.input.keyboard.enabled = false;
+                    gameOverText = this.add.text(620, 240, "Game Over", { fontSize: "100px", fill: "#FFF" });
+                    f5Text = this.add.text(620, 350, "Try again press F5", { fontSize: "50px", fill: "#FFF" });
                     score += 0;
                     music.stop();
                     this.game.start();
@@ -147,6 +147,13 @@ function update() {
                 scoreText.setText("Score: " + score);
                 torch.destroy();
                 scoreText.setText("Score: " + score);
+                if (score == 120) {
+                    lifeText = this.add.text(620, 240, "You win !", { fontSize: "100px", fill: "#FFF" });
+                    f5Text = this.add.text(620, 350, "Try again press F5", { fontSize: "50px", fill: "#FFF" });
+                    this.input.keyboard.enabled = false;
+                    music.stop();
+                    this.game.start();
+                }
             }
         });
     };
