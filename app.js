@@ -1,6 +1,6 @@
 const config = {
     width: 1900,
-    height: 300,
+    height: 480,
     type: Phaser.AUTO,
     physics: {
         default: "arcade"
@@ -17,9 +17,12 @@ let game = new Phaser.Game(config);
 let player;
 let cursors;
 let music;
-var score = 0;
-var scoreText;
-let torchKeep;
+let score = 0;
+let scoreText;
+let life = 3;
+let lifeText;
+let gameOverText;
+let f5Text;
 
 function preload() {
     this.load.image("player", "assets/player.png");
@@ -30,16 +33,13 @@ function preload() {
 }
 
 function create() {
-    window.onload = function() {
-        var context = new AudioContext();
-        // Setup all nodes
-      }
-
     music = this.sound.add("music");
     music.loop = true;
     music.play();
 
-    scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#FFF' });
+    scoreText = this.add.text(16, 16, "Score: 0", { fontSize: "32px", fill: "#FFF" });
+    lifeText = this.add.text(16, 48, "Life: 3", { fontSize: "32px", fill: "#FFF" });
+
     player = this.physics.add.image(0, 0, "player");
 
     cursors = this.input.keyboard.createCursorKeys();
@@ -71,16 +71,16 @@ function create() {
         repeat: 12,
         setXY: {
             x: 160,
-            y: 10,
+            y: 20,
             stepX: 150,
-            stepY: 25
+            stepY: 40
         }
     });
 
     Phaser.Actions.Call(
         this.walls.getChildren(),
         function(enemy) {
-            enemy.speed = Math.random() * 1 + 1;
+            enemy.speed = Math.random() * 5 + 1;
         },
         this
     );
@@ -88,7 +88,7 @@ function create() {
     Phaser.Actions.Call(
         this.bombs.getChildren(),
         function(enemy) {
-            enemy.speed = Math.random() * 3 + 1;
+            enemy.speed = Math.random() * 15 + 1;
         },
         this
     );
@@ -98,7 +98,7 @@ function update() {
     player.body.collideWorldBounds = true;
 
     player.setVelocityX(0);
-    player.setVelocityY(50);
+    player.setVelocityY(0);
 
     if (cursors.up.isDown) {
         player.setVelocity(0, -150);
@@ -107,10 +107,10 @@ function update() {
         player.setVelocity(0, 150);
     }
     if (cursors.left.isDown) {
-        player.setVelocity(-200, 0);
+        player.setVelocity(-150, 0);
     }
     if (cursors.right.isDown) {
-        player.setVelocity(200, 0);
+        player.setVelocity(150, 0);
     }
 
     const moveObjects = enemies => {
@@ -122,8 +122,20 @@ function update() {
                 enemy.speed *= -1;
             }
             if (Phaser.Geom.Intersects.RectangleToRectangle(player.getBounds(), enemy.getBounds())) {
-                music.stop();
-                this.game.restart();
+                if (life > 1) {
+                    life--;
+                    console.log(life)
+                    lifeText.setText("Life: " + life);
+                    enemy.destroy();
+                } else {
+                    lifeText.setText("Life: 0");
+                    gameOverText = this.add.text(620,  240, "Game Over", { fontSize: "100px", fill: "#FFF" });
+                    f5Text = this.add.text(670, 350, "Try again press F5", { fontSize: "50px", fill: "#FFF" });
+                    this.input.keyboard.enabled = false;
+                    score += 0;
+                    music.stop();
+                    this.game.start();
+                }
             }
         });
     };
@@ -132,8 +144,9 @@ function update() {
         torchs.forEach(torch => {
             if (Phaser.Geom.Intersects.RectangleToRectangle(player.getBounds(), torch.getBounds())) {
                 score += 10;
-                scoreText.setText('Score: ' + score);
+                scoreText.setText("Score: " + score);
                 torch.destroy();
+                scoreText.setText("Score: " + score);
             }
         });
     };
@@ -141,4 +154,4 @@ function update() {
     moveObjects(this.walls.getChildren());
     moveObjects(this.bombs.getChildren());
     catchTorch(this.torchs.getChildren());
- }
+}
