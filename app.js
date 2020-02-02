@@ -1,5 +1,5 @@
 const config = {
-    width: 1200,
+    width: 1900,
     height: 300,
     type: Phaser.AUTO,
     physics: {
@@ -37,7 +37,7 @@ function create() {
 
     this.walls = this.add.group({
         key: "wall",
-        repeat: 6,
+        repeat: 11,
         setXY: {
             x: 60,
             y: 0,
@@ -48,7 +48,7 @@ function create() {
 
     this.bombs = this.add.group({
         key: "bomb",
-        repeat: 6,
+        repeat: 11,
         setXY: {
             x: 120,
             y: 0,
@@ -59,7 +59,7 @@ function create() {
 
     this.torchs = this.add.group({
         key: "torch",
-        repeat: 7,
+        repeat: 12,
         setXY: {
             x: 160,
             y: 0,
