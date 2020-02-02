@@ -17,6 +17,9 @@ let game = new Phaser.Game(config);
 let player;
 let cursors;
 let music;
+var score = 0;
+var scoreText;
+let torchKeep;
 
 function preload() {
     this.load.image("player", "assets/player.png");
@@ -27,11 +30,17 @@ function preload() {
 }
 
 function create() {
-    player = this.physics.add.image(0, 0, "player");
+    window.onload = function() {
+        var context = new AudioContext();
+        // Setup all nodes
+      }
 
     music = this.sound.add("music");
     music.loop = true;
     music.play();
+
+    scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#FFF' });
+    player = this.physics.add.image(0, 0, "player");
 
     cursors = this.input.keyboard.createCursorKeys();
 
@@ -62,9 +71,9 @@ function create() {
         repeat: 12,
         setXY: {
             x: 160,
-            y: 0,
+            y: 10,
             stepX: 150,
-            stepY: 0
+            stepY: 25
         }
     });
 
@@ -80,14 +89,6 @@ function create() {
         this.bombs.getChildren(),
         function(enemy) {
             enemy.speed = Math.random() * 3 + 1;
-        },
-        this
-    );
-
-    Phaser.Actions.Call(
-        this.torchs.getChildren(),
-        function(enemy) {
-            enemy.speed = Math.random() * 4 + 1;
         },
         this
     );
@@ -115,19 +116,29 @@ function update() {
     const moveObjects = enemies => {
         enemies.forEach(enemy => {
             enemy.y += enemy.speed;
-            if (enemy.y >= config.height - 25) {
+            if (enemy.y >= config.height - 28) {
                 enemy.speed *= -1;
             } else if (enemy.y <= 0) {
                 enemy.speed *= -1;
             }
             if (Phaser.Geom.Intersects.RectangleToRectangle(player.getBounds(), enemy.getBounds())) {
                 music.stop();
-                this.preload.restart();
+                this.game.restart();
+            }
+        });
+    };
+
+    const catchTorch = torchs => {
+        torchs.forEach(torch => {
+            if (Phaser.Geom.Intersects.RectangleToRectangle(player.getBounds(), torch.getBounds())) {
+                score += 10;
+                scoreText.setText('Score: ' + score);
+                torch.destroy();
             }
         });
     };
 
     moveObjects(this.walls.getChildren());
     moveObjects(this.bombs.getChildren());
-    moveObjects(this.torchs.getChildren());
-}
+    catchTorch(this.torchs.getChildren());
+ }
