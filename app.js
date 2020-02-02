@@ -132,6 +132,7 @@ function update() {
                     lifeText.setText("Life: 0");
                     gameOverText = this.add.text(620, 240, "Game Over", { fontSize: "100px", fill: "#FFF" });
                     f5Text = this.add.text(620, 350, "Try again press F5", { fontSize: "50px", fill: "#FFF" });
+                    this.input.keyboard.enabled = false;
                     score += 0;
                     music.stop();
                     this.game.start();
@@ -148,7 +149,7 @@ function update() {
                 torch.destroy();
                 scoreText.setText("Score: " + score);
                 if (score == 120) {
-                    lifeText = this.add.text(620, 240, "You win !", { fontSize: "100px", fill: "#FFF" });
+                    winText = this.add.text(620, 240, "You win !", { fontSize: "100px", fill: "#FFF" });
                     f5Text = this.add.text(620, 350, "Try again press F5", { fontSize: "50px", fill: "#FFF" });
                     this.input.keyboard.enabled = false;
                     music.stop();
