@@ -26,11 +26,11 @@ let gameOverText;
 let f5Text;
 
 function preload() {
-    this.load.image("player", "/assets/player.png");
-    this.load.image("wall", "/assets/wall-small.png");
-    this.load.image("bomb", "/assets/bomb2.png");
-    this.load.image("torch", "/assets/torch.png");
-    this.load.audio("music", "/assets/music.ogg");
+    this.load.image("player", "assets/player.png");
+    this.load.image("wall", "assets/wall-small.png");
+    this.load.image("bomb", "assets/bomb2.png");
+    this.load.image("torch", "assets/torch.png");
+    this.load.audio("music", "assets/music.ogg");
 }
 
 function create() {
@@ -89,7 +89,8 @@ function create() {
     Phaser.Actions.Call(
         this.bombs.getChildren(),
         function(enemy) {
-            enemy.speed = Math.random() * 7 + 1;
+          life
+            enemy.speed = Math.random() * 6 + 1;
         },
         this
     );
