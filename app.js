@@ -88,7 +88,7 @@ function create() {
     Phaser.Actions.Call(
         this.bombs.getChildren(),
         function(enemy) {
-            enemy.speed = Math.random() * 15 + 1;
+            enemy.speed = Math.random() * 6 + 1;
         },
         this
     );
