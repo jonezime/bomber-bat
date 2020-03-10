@@ -1,4 +1,4 @@
-# GameJam Wild Code School February 2020
+# Game jam Wild Code School February 2020
 
 ## Platform game
 
