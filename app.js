@@ -1,5 +1,5 @@
 const config = {
-  parent: "game",
+  parent: "gameCss",
   width: 1200,
   height: 480,
   physics: {
@@ -25,6 +25,10 @@ let winText;
 let gameOverText;
 let f5Text;
 let finalScoreText;
+const configSound = {
+  mute: true,
+  volume: 0.5,
+};
 
 /*----------PRELOAD------------ */
 
@@ -39,7 +43,7 @@ function preload() {
 /*----------CREATE------------ */
 
 function create() {
-  music = this.sound.add("music");
+  music = this.sound.add("music", configSound);
   music.loop = true;
   music.play();
 
