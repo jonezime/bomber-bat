@@ -92,7 +92,7 @@ function create() {
   Phaser.Actions.Call(
     this.walls.getChildren(),
     function (enemy) {
-      enemy.speed = Math.random() * 4 + 1;
+      enemy.speed = Math.random() * 6 + 1;
     },
     this
   );
