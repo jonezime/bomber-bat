@@ -1,6 +1,7 @@
-# Game jam Wild Code School February 2020
+# BomberBat ![The Bat](./assets/player.png)
 
-## Platform game
+## https://jonezime.github.io/bomber-bat/
 
-Small platform game, that I realised in 1 day with Phaser 3\
-Hope you'll enjoy it!
+Platform game designed in one day with Phaser 3, during GameJam at Wild Code School France in 2020  
+This is my first game with Phaser...but I hope you'll enjoy it!
+
