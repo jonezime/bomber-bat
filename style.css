@@ -1,5 +1,4 @@
 body {
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #485461;
   background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
   height: 100vh;
@@ -21,19 +20,45 @@ body {
 }
 
 .navbar-title {
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: rgb(14, 165, 21);
   font-size: 2rem;
 }
 
-.subtitle {
+.modal-content {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.modal-body,
+.modal-header,
+.modal-footer {
+  background-color: #485461;
+  background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
+}
+
+.modal-title {
+  color: rgb(14, 165, 21);
+  margin-left: 15px;
+}
+
+h5 {
+  font-size: 1.1rem;
   color: white;
+}
+
+h6 {
+  color: rgb(195, 195, 195);
   font-style: italic;
 }
 
 #game {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 25px;
 }
 
 .testimonials {

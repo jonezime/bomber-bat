@@ -47,7 +47,7 @@ function create() {
     fontSize: "32px",
     fill: "#FFF",
   });
-  lifeText = this.add.text(16, 48, "Life: 3", {
+  lifeText = this.add.text(16, 48, "Lifes: 3", {
     fontSize: "32px",
     fill: "#FFF",
   });
@@ -82,8 +82,8 @@ function create() {
     key: "torch",
     repeat: 10,
     setXY: {
-      x: 190,
-      y: 40,
+      x: 210,
+      y: 50,
       stepX: 95,
       stepY: 40,
     },
@@ -144,11 +144,10 @@ function update() {
       ) {
         if (life > 1) {
           life--;
-          console.log(life);
-          lifeText.setText("Life: " + life);
+          lifeText.setText("Lifes: " + life);
           enemy.destroy();
         } else {
-          lifeText.setText("Life: 0");
+          lifeText.setText("Lifes: 0");
           gameOverText = this.add.text(320, 240, "Game Over", {
             fontSize: "100px",
             fill: "#FFF",
