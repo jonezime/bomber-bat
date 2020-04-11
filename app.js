@@ -83,7 +83,7 @@ function create() {
     repeat: 10,
     setXY: {
       x: 190,
-      y: 20,
+      y: 40,
       stepX: 95,
       stepY: 40,
     },
