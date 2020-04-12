@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>GameJam</title>
+    <title>BomberBat</title>
+    <link rel="icon" type="image/png" href="assets/player.png" />
     <link
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
       rel="stylesheet"
@@ -30,21 +31,35 @@
   </head>
   <body id="window">
     <nav class="navbar static-top">
-      <div class="container">
-        <a target="_blank" href="https://github.com/jonezime/bomber-bat">
-          <img class="navbar-image" src="assets/github.png" alt="Github" />
-        </a>
-        <span class="navbar-title">Welcome to BomberBat !</span>
+      <div class="container full-navbar">
+        <div>
+          <a target="_blank" href="https://github.com/jonezime/bomber-bat">
+            <img class="navbar-image" src="assets/github.png" alt="Github" />
+          </a>
+        </div>
+        <div class="welcome-bat">
+          <div>
+            <span class="navbar-title">Welcome to BomberBat !</span>
+          </div>
+          <div class="welcome-image">
+            <img
+              class="img-fluid rounded-circle image-welcome"
+              src="assets/player.png"
+              alt="The Bat"
+            />
+          </div>
+        </div>
         <!-- Button trigger modal -->
-        <button
-          type="button"
-          class="btn btn-outline-success"
-          data-toggle="modal"
-          data-target="#modalRules"
-        >
-          Rules
-        </button>
-
+        <div>
+          <button
+            type="button"
+            class="btn btn-outline-success"
+            data-toggle="modal"
+            data-target="#modalRules"
+          >
+            Rules
+          </button>
+        </div>
         <!-- Modal -->
         <div class="modal fade" id="modalRules">
           <div class="modal-dialog modal-dialog-centered" role="document">
