@@ -62,7 +62,7 @@ function create() {
 
   this.walls = this.add.group({
     key: "wall",
-    repeat: 11,
+    repeat: 7,
     setXY: {
       x: 60,
       y: 0,
@@ -73,7 +73,7 @@ function create() {
 
   this.bombs = this.add.group({
     key: "bomb",
-    repeat: 11,
+    repeat: 7,
     setXY: {
       x: 120,
       y: 0,
@@ -135,7 +135,7 @@ function update() {
   const moveObjects = (enemies) => {
     enemies.forEach((enemy) => {
       enemy.y += enemy.speed;
-      if (enemy.y >= config.height - 28) {
+      if (enemy.y >= config.height) {
         enemy.speed *= -1;
       } else if (enemy.y <= 0) {
         enemy.speed *= -1;
@@ -181,16 +181,12 @@ function update() {
         scoreText.setText("Score: " + score);
         torch.destroy();
         scoreText.setText("Score: " + score);
-        if (score == 120) {
-          winText = this.add.text(620, 240, "You win !", {
+        if (score == 110) {
+          winText = this.add.text(320, 240, "You win !", {
             fontSize: "100px",
             fill: "#FFF",
           });
-          f5Text = this.add.text(620, 350, "Try again press F5", {
-            fontSize: "50px",
-            fill: "#FFF",
-          });
-          this.add.text(620, 370, scoreText, {
+          f5Text = this.add.text(320, 350, "Try again press F5", {
             fontSize: "50px",
             fill: "#FFF",
           });
